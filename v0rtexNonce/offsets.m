@@ -35,6 +35,13 @@ UInt64 OFFSET_IOSURFACEROOTUSERCLIENT_VTAB;
 UInt64 OFFSET_ROP_ADD_X0_X0_0x10;
 
 
+//these were found for tvOS, so adding the defines in just in case
+
+UInt64 OFFSET_CHGPROCCNT;
+UInt64 OFFSET_KAUTH_CRED_REF;
+UInt64 OFFSET_ROP_LDR_X0_X0_0x10;
+UInt64 OFFSET_ROOT_MOUNT_V_NODE;
+
 /**--READ BEFORE YOU ADD OFFSETS--**/
 //certain models have the same kernelcache. For example, iPhone6,1 and iPhone6,2 (iPhone 5s GSM and global)
 //they both have the same ipsw and same kernelcache. Such models should be combined with an OR logic
@@ -64,6 +71,80 @@ void load_offsets(void)
 
     //exit(1);
 
+    
+    //AppleTV 4
+    
+    if(!strcmp(device, "AppleTV5,3"))
+    {
+        //10.2 (equivalent to 10.3 on other iOS versions)
+        if(!strcmp(version, "14W265"))
+        {
+            OFFSET_ZONE_MAP                             = 0xfffffff007558478;
+            OFFSET_KERNEL_MAP                           = 0xfffffff0075b4050;
+            OFFSET_KERNEL_TASK                          = 0xfffffff0075b4048;
+            OFFSET_REALHOST                             = 0xfffffff00753aba0;
+            OFFSET_BZERO                                = 0xfffffff00708df80;
+            OFFSET_BCOPY                                = 0xfffffff00708ddc0;
+            OFFSET_COPYIN                               = 0xfffffff00718d3a8;
+            OFFSET_COPYOUT                              = 0xfffffff00718d59c;
+            OFFSET_CHGPROCCNT                           = 0xfffffff00739a78c;
+            OFFSET_KAUTH_CRED_REF                       = 0xfffffff007374b2c;
+            OFFSET_IPC_PORT_ALLOC_SPECIAL               = 0xfffffff0070a611c;
+            OFFSET_IPC_KOBJECT_SET                      = 0xfffffff0070b9374;
+            OFFSET_IPC_PORT_MAKE_SEND                   = 0xfffffff0070a5c40;
+            OFFSET_IOSURFACEROOTUSERCLIENT_VTAB         = 0xfffffff006f15678;
+            OFFSET_ROP_ADD_X0_X0_0x10                   = 0xfffffff00693d398;
+            OFFSET_ROP_LDR_X0_X0_0x10                   = 0xfffffff00667109c;
+            OFFSET_ROOT_MOUNT_V_NODE                    = 0xfffffff0075b40b0;
+        }
+        
+        //10.2.1 (equivalent to 10.3.2)
+        if(!strcmp(version, "14W585a"))
+        {
+            OFFSET_ZONE_MAP                             = 0xfffffff007558478;
+            OFFSET_KERNEL_MAP                           = 0xfffffff0075b4050;
+            OFFSET_KERNEL_TASK                          = 0xfffffff0075b4048;
+            OFFSET_REALHOST                             = 0xfffffff00753aba0;
+            OFFSET_BZERO                                = 0xfffffff00708df80;
+            OFFSET_BCOPY                                = 0xfffffff00708ddc0;
+            OFFSET_COPYIN                               = 0xfffffff00718d37c;
+            OFFSET_COPYOUT                              = 0xfffffff00718d570;
+            OFFSET_CHGPROCCNT                           = 0xfffffff00739aab4;
+            OFFSET_KAUTH_CRED_REF                       = 0xfffffff007374e6c;
+            OFFSET_IPC_PORT_ALLOC_SPECIAL               = 0xfffffff0070a60b4;
+            OFFSET_IPC_KOBJECT_SET                      = 0xfffffff0070b938c;
+            OFFSET_IPC_PORT_MAKE_SEND                   = 0xfffffff0070a5bd8;
+            OFFSET_IOSURFACEROOTUSERCLIENT_VTAB         = 0xfffffff006f15678;
+            OFFSET_ROP_ADD_X0_X0_0x10                   = 0xfffffff00693a398;
+            OFFSET_ROP_LDR_X0_X0_0x10                   = 0xfffffff00666e09c;
+            OFFSET_ROOT_MOUNT_V_NODE                    = 0xfffffff0075b40b0;
+        }
+        
+        //10.2.2 (equivalent to 10.3.3)
+        if(!strcmp(version, "14W756"))
+        {
+            OFFSET_ZONE_MAP                             = 0xfffffff007558478;
+            OFFSET_KERNEL_MAP                           = 0xfffffff0075b4050;
+            OFFSET_KERNEL_TASK                          = 0xfffffff0075b4048;
+            OFFSET_REALHOST                             = 0xfffffff00753aba0;
+            OFFSET_BZERO                                = 0xfffffff00708df80;
+            OFFSET_BCOPY                                = 0xfffffff00708ddc0;
+            OFFSET_COPYIN                               = 0xfffffff00718d028;
+            OFFSET_COPYOUT                              = 0xfffffff00718d21c;
+            OFFSET_CHGPROCCNT                           = 0xfffffff00739aa04;
+            OFFSET_KAUTH_CRED_REF                       = 0xfffffff007374d90;
+            OFFSET_IPC_PORT_ALLOC_SPECIAL               = 0xfffffff0070a60b4;
+            OFFSET_IPC_KOBJECT_SET                      = 0xfffffff0070b938c;
+            OFFSET_IPC_PORT_MAKE_SEND                   = 0xfffffff0070a5bd8;
+            OFFSET_IOSURFACEROOTUSERCLIENT_VTAB         = 0xfffffff006f11678;
+            OFFSET_ROP_ADD_X0_X0_0x10                   = 0xfffffff006935398;
+            OFFSET_ROP_LDR_X0_X0_0x10                   = 0xfffffff00666a09c;
+            OFFSET_ROOT_MOUNT_V_NODE                    = 0xfffffff0075b40b0;
+        }
+        
+    }
+    
+    
     //iPad 4 (WiFi)
     if(!strcmp(device, "iPad3,4"))
     {
