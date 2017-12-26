@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IOKit/IOKitLib.h"
+#include "common.h"
+#include "set.h"
 
 @interface ViewController : UIViewController
 

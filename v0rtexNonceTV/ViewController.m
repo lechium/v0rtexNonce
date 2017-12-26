@@ -34,7 +34,7 @@
             break;
             
         default:
-            LOG("Invalid generator\n");
+            NSLog(@"Invalid generator\n");
             [[[UIAlertView alloc]
               initWithTitle:@"Error"
               message:@"The generator you entered is invalid"

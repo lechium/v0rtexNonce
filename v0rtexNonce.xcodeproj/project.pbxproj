@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		042001B51FEC736200823F24 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 042001B41FEC736200823F24 /* README.md */; };
+		3260799B1FF3088B00B90C7B /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3260799A1FF3088B00B90C7B /* IOKit.framework */; };
 		32CBACAA1FF2E95800F652E9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CBACA91FF2E95800F652E9 /* AppDelegate.m */; };
 		32CBACAD1FF2E95800F652E9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CBACAC1FF2E95800F652E9 /* ViewController.m */; };
 		32CBACB01FF2E95800F652E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32CBACAE1FF2E95800F652E9 /* Main.storyboard */; };
@@ -53,6 +54,7 @@
 
 /* Begin PBXFileReference section */
 		042001B41FEC736200823F24 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		3260799A1FF3088B00B90C7B /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS.sdk/System/Library/Frameworks/IOKit.framework; sourceTree = DEVELOPER_DIR; };
 		32CBACA61FF2E95800F652E9 /* v0rtexNonceTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = v0rtexNonceTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32CBACA81FF2E95800F652E9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		32CBACA91FF2E95800F652E9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3260799B1FF3088B00B90C7B /* IOKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,6 +227,7 @@
 		BC31D2E71FDF5BA90065D9B4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3260799A1FF3088B00B90C7B /* IOKit.framework */,
 				BC31D2E81FDF5BA90065D9B4 /* IOKit.framework */,
 			);
 			name = Frameworks;
@@ -494,9 +498,11 @@
 		32CBACB61FF2E95800F652E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DRS5893MPG;
 				INFOPLIST_FILE = v0rtexNonceTV/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nito.com.v0rtexNonceTV;
@@ -504,15 +510,18 @@
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 11.0;
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/IOKit/**";
 			};
 			name = Debug;
 		};
 		32CBACB71FF2E95800F652E9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DRS5893MPG;
 				INFOPLIST_FILE = v0rtexNonceTV/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nito.com.v0rtexNonceTV;
@@ -520,6 +529,7 @@
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 11.0;
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/IOKit/**";
 			};
 			name = Release;
 		};
