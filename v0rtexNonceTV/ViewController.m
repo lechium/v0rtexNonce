@@ -8,7 +8,6 @@
 
 #import "ViewController.h"
 
-
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *generatorLabel;
 @property (weak, nonatomic) IBOutlet UITextField *generatorInput;
@@ -19,35 +18,14 @@
 {
     const char *generator = [_generatorInput.text UTF8String];
     char compareString[22];
-    char generatorToSet[22];
     uint64_t rawGeneratorValue;
-    switch(strlen(generator))
-    {
-        case 16:
-            sscanf(generator, "%llx", &rawGeneratorValue);
-            sprintf(compareString, "%llx", rawGeneratorValue);
-            break;
-            
-        case 18:
-            sscanf(generator, "0x%16llx", &rawGeneratorValue);
-            sprintf(compareString, "0x%llx", rawGeneratorValue);
-            break;
-            
-        default:
-            NSLog(@"Invalid generator\n");
-            [[[UIAlertView alloc]
-              initWithTitle:@"Error"
-              message:@"The generator you entered is invalid"
-              delegate:nil
-              cancelButtonTitle:@"Ok"
-              otherButtonTitles:nil]
-             show];
-            break;
-    }
+    sscanf(generator, "0x%16llx",&rawGeneratorValue);
+    sprintf(compareString, "0x%016llx", rawGeneratorValue);
+    printf("regenerated %s\n", compareString);
     if(!strcmp(compareString, generator))
     {
-        sprintf(generatorToSet, "0x%llx", rawGeneratorValue);
-        if(set_generator(generatorToSet))
+        printf("generator to set : %s\n", generator);
+        if(set_generator(generator))
         {
             [[[UIAlertView alloc]
               initWithTitle:@"Success"
@@ -80,7 +58,6 @@
     if(getuid() != 0)
     {
         if(party_hard())
-            //        if(0)
         {
             [[[UIAlertView alloc]
               initWithTitle:@"Error"
