@@ -43,6 +43,7 @@ int party_hard(void)
             LOG("kernel_task: 0x%x", tfp0);
             if(MACH_PORT_VALID(tfp0))
             {
+               // nvpatch(tfp0, 0xfffffff007004000 + kslide, "auto-boot");
                 return nvpatch(tfp0, 0xfffffff007004000 + kslide, "com.apple.System.boot-nonce");
             }
         }
@@ -59,6 +60,7 @@ bool set_generator(const char *gen)
     bool ret = false;
 
     CFStringRef str = CFStringCreateWithCStringNoCopy(NULL, gen, kCFStringEncodingUTF8, kCFAllocatorNull);
+    
     CFMutableDictionaryRef dict = CFDictionaryCreateMutable(NULL, 0, &kCFCopyStringDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
     if(!str || !dict)
     {
@@ -67,6 +69,8 @@ bool set_generator(const char *gen)
     else
     {
         CFDictionarySetValue(dict, CFSTR("com.apple.System.boot-nonce"), str);
+        //CFDictionarySetValue(dict, CFSTR("auto-boot"), CFSTR("false"));
+        //LOG("set auto-boot too i hope");
         CFRelease(str);
 
         io_service_t nvram = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching("IODTNVRAM"));
@@ -84,6 +88,7 @@ bool set_generator(const char *gen)
                 {
                     ret = true;
                     LOG("generator set");
+                  //  LOG("set auto-boot too i hope");
                 }
             }
         }

@@ -18,33 +18,56 @@
 {
     const char *generator = [_generatorInput.text UTF8String];
     char compareString[22];
+    char generatorToSet[22];
     uint64_t rawGeneratorValue;
-    sscanf(generator, "0x%16llx",&rawGeneratorValue);
-    sprintf(compareString, "0x%016llx", rawGeneratorValue);
-    printf("regenerated %s\n", compareString);
+    NSLog(@"gen length: %lu", strlen(generator));
+    switch(strlen(generator))
+    {
+        case 16:
+            sscanf(generator, "%llx", &rawGeneratorValue);
+            sprintf(compareString, "%llx", rawGeneratorValue);
+            break;
+            
+        case 18:
+            sscanf(generator, "0x%16llx", &rawGeneratorValue);
+            sprintf(compareString, "0x%llx", rawGeneratorValue);
+            break;
+            
+        case 19:
+            sscanf(generator, "0x%17llx", &rawGeneratorValue);
+            sprintf(compareString, "0x%llx", rawGeneratorValue);
+            break;
+            
+        default:
+            LOG("Invalid generator\n");
+            UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"Error" message:@"The generator you entered is invalid" preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+            [ac addAction:cancel];
+            [self presentViewController:ac animated:true completion:nil];
+            break;
+    }
     if(!strcmp(compareString, generator))
     {
-        printf("generator to set : %s\n", generator);
-        if(set_generator(generator))
+        sprintf(generatorToSet, "0x%llx", rawGeneratorValue);
+        LOG("generator to set : %s\n", generatorToSet);
+        if(set_generator(generatorToSet))
         {
-            [[[UIAlertView alloc]
-              initWithTitle:@"Success"
-              message:@"The generator has been set"
-              delegate:nil
-              cancelButtonTitle:@"Ok"
-              otherButtonTitles:nil]
-             show];
+            UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"Success" message:@"The generator has been set" preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+            [ac addAction:cancel];
+            [self presentViewController:ac animated:true completion:nil];
         }
     }
     else
     {
-        [[[UIAlertView alloc]
-          initWithTitle:@"Error"
-          message:@"Failed to validate generator"
-          delegate:nil
-          cancelButtonTitle:@"Ok"
-          otherButtonTitles:nil]
-         show];
+        UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"Error" message:@"Failed to validate generator" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+        [ac addAction:cancel];
+        [self presentViewController:ac animated:true completion:nil];
+       
     }
     NSString *currentGenerator = [self getGenerator];
     _generatorLabel.text = _generatorLabel.text = [currentGenerator length] < 2 ? @"-unavailable-" : currentGenerator;;
