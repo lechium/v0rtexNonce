@@ -69,8 +69,14 @@ bool set_generator(const char *gen)
     else
     {
         CFDictionarySetValue(dict, CFSTR("com.apple.System.boot-nonce"), str);
+        
+        //tried setting auto-boot a few different ways here, never worked.
+        //this way never presented an error but never worked
         //CFDictionarySetValue(dict, CFSTR("auto-boot"), CFSTR("false"));
-        //LOG("set auto-boot too i hope");
+       
+        //and this way would actually return an error upon calling IORegistryEntrySetCFProperties
+        // CFDictionarySetValue(dict, CFSTR("auto-boot"), kCFBooleanFalse);
+   
         CFRelease(str);
 
         io_service_t nvram = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching("IODTNVRAM"));
@@ -88,7 +94,7 @@ bool set_generator(const char *gen)
                 {
                     ret = true;
                     LOG("generator set");
-                  //  LOG("set auto-boot too i hope");
+                    //LOG("set auto-boot too?");
                 }
             }
         }

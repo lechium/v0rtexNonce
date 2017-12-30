@@ -1,5 +1,9 @@
 **I've added offsets for all devices and versions. This is experimental and I will be replacing some of them with confirmed ones from previous commits**
 
+** This has been tested on tvOS but fails. it results in similar issues discussed in https://github.com/arx8x/v0rtexNonce/issues/44**
+
+** If you want to build this on tvOS you will need to find an IOKit.framework from an earlier tvOS framework and manually copy it into the /Applications/Xcode.app/Contents/Developer/Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS.sdk/System/Library/Frameworks/ folder **
+
 # v0rtexNonce
 
 Read or set generator(com.apple.System.boot-nonce variable) using siguza's v0rtex exploit.

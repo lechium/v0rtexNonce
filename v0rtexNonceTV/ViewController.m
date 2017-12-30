@@ -16,6 +16,14 @@
 @implementation ViewController
 - (IBAction)generatorInputActionTrigger:(id)sender
 {
+    /*
+     
+     this code is different from the ViewController.m in the iOS version because
+     no matter what i did it always told me my generator was invalid with the
+     current code in view controller for iOS, this is what the view controller used to
+     do in an earlier version
+     
+     */
     const char *generator = [_generatorInput.text UTF8String];
     char compareString[22];
     char generatorToSet[22];
@@ -82,13 +90,12 @@
     {
         if(party_hard())
         {
-            [[[UIAlertView alloc]
-              initWithTitle:@"Error"
-              message:@"v0rtex exploit failed\nPlease reboot and try again"
-              delegate:nil
-              cancelButtonTitle:nil
-              otherButtonTitles:nil]
-             show];
+            
+            UIAlertController *ac = [UIAlertController alertControllerWithTitle:@"Error" message:@"v0rtex exploit failed\nPlease reboot and try again" preferredStyle:UIAlertControllerStyleAlert];
+            
+            [self presentViewController:ac animated:true completion:nil];
+            
+            
         }
     }
     NSString *currentGenerator = [self getGenerator];
